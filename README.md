@@ -31,12 +31,19 @@ If you have an idea of another variant, just open an issue!
 
 - Download the rmskin package from [releases](https://github.com/infeeeee/kimai2-cmd-rainmeter/releases/latest)
 - Open the rmskin package with Rainmeter, enable the skin
-- Click on the Kimai logo, and add your server address and creditentials in the opening new window
+- Click on the Kimai logo, and add your server address and credentials in the opening new window
+- Click on the reload icon to update the skin
+
+### Manual installation
+
+- Git clone or download and unzip the repo to your Rainmeter skins folder. default location: `Documents\Rainmeter\Skins`
+- In Rainmeter refresh all and load the skin
+- Click on the Kimai logo, and add your server address and credentials in the opening new window
 - Click on the reload icon to update the skin
 
 ## Usage
 
-- Click on the Kimai logo to open yourt Kimai webui in your default browser
+- Click on the Kimai logo to open Kimai webui in your default browser
 - Click on the name of the current active recording or on the 'No active recording' text to show your recent measurements
 - Click on one of a recent measurement to restart it
 - Click on the ▶️ play button to restart your latest measurement
