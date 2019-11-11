@@ -76,4 +76,4 @@ Measure=String
 String=#activeHrs#:[MeasureMins]
 DynamicVariables=1
 RegExpSubstitute=1
-Substitute="(:)(\d)$":"\10\2 ","(:\d\d)$":"\1 ","^:00 $":"","#activeHrs#:00":""
+Substitute="(:)(\d)$":"\10\2 ","(:\d\d)$":"\1 ","^:\d\d $":"","#activeHrs#:\d\d":""
