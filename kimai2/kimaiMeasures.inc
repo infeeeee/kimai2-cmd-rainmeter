@@ -53,21 +53,27 @@ State=Show
 ; OutputFile=#CURRENTPATH#log.txt
 ; OutputType=UTF8
 
-; [MeasureDuration]
-; Measure=String
-; Formula=#activeRecording#
-; IfMatch=No active recording
-; IfMatchAction=[!SetVariable activeDur '']
-; IfNotMatchAction=[!SetVariable activeDur (MeasureHrs + : + MeasureMins)]
+[MeasureCurrTimeMin]
+Measure=Time
+Format=%M
+IfBelowValue=1
+IfBelowAction=[!SetVariable activeMins (#activeMins#+60)]
 
+[MeasureStartMin]
+Measure=Calc
+Formula=MeasureCurrTimeMin
+OnUpdateAction=[!PauseMeasure MeasureStartMin]
 
-; [MeasureHrs]
-; Measure=Calc
-; Formula=#activeHrs#+MeasureHrs+1%25
+[MeasureMins]
+Measure=Calc
+Formula=MeasureCurrTimeMin+#activeMins#-MeasureStartMin
+IfAboveValue=59
+IfAboveAction=[!SetVariable activeMins (#activeMins#-60)][!SetVariable activeHrs (#activeHrs#+1)]
+DynamicVariables=1
 
-; [MeasureMins]
-; Measure=Calc
-; Formula=MeasureMins >= 0 ? (MeasureMins+1%60) : #activeMins#
-; UpdateDivider=60
-; IfCondition=MeasureMins = 60
-; IfTrueAction=[!SetVariable #activeHrs# (#activeHrs#+1)]
+[MeasureActiveTime]
+Measure=String
+String=#activeHrs#:[MeasureMins]
+DynamicVariables=1
+RegExpSubstitute=1
+Substitute="(:)(\d)$":"\10\2 ","(:\d\d)$":"\1 ","^:00 $":"","#activeHrs#:00":""
