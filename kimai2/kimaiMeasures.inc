@@ -67,7 +67,7 @@ OnUpdateAction=[!PauseMeasure MeasureStartMin]
 [MeasureMins]
 Measure=Calc
 Formula=MeasureCurrTimeMin+#activeMins#-MeasureStartMin
-IfCondition=(MeasureMins > 59) && (#activeMins# > 0)
+IfCondition=(MeasureMins > 59) && (#activeRunning# = 1)
 IfTrueAction=[!SetVariable activeMins (#activeMins#-60)][!SetVariable activeHrs (#activeHrs#+1)]
 DynamicVariables=1
 
