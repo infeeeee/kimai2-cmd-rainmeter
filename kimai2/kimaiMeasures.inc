@@ -35,7 +35,7 @@ Plugin=RunCommand
 Program=#kimaiExe#
 Parameter=rainmeter
 StartInFolder=#kimaiDir#
-FinishAction=[!Refresh]
+FinishAction=[!Refresh][!UpdateMeasure MeasureIsRunning]
 State=Hide
 
 ; Uncomment for logging
@@ -70,6 +70,13 @@ Formula=MeasureCurrTimeMin+#activeMins#-MeasureStartMin
 IfCondition=(MeasureMins > 59) && (#activeRunning# = 1)
 IfTrueAction=[!SetVariable activeMins (#activeMins#-60)][!SetVariable activeHrs (#activeHrs#+1)]
 DynamicVariables=1
+Disabled=1
+
+[MeasureIsRunning]
+Measure=Calc
+IfCondition=#activeRunning# = 1
+IfTrueAction=[!EnableMeasure MeasureMins]
+UpdateDivider=-1
 
 [MeasureActiveTime]
 Measure=String
